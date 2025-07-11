@@ -10,3 +10,7 @@ resource "aws_s3_bucket" "name" {
     bucket = "tombayya-1"
   
 }
+resource "aws_instance" "name1" {
+    ami = "ami-05ffe3c48a9991133"
+    instance_type = "t2.micro"
+}
