@@ -55,8 +55,13 @@ resource "aws_security_group" "rds_sg" {
 }
 
 resource "aws_secretsmanager_secret" "rds_secret" {
-  name        = "rds-credentials"
-  description = "RDS admin credentials stored securely"
+  name                    = "rds-credentials"
+  description             = "RDS admin credentials stored securely"
+  recovery_window_in_days = 7
+
+  tags = {
+    Environment = "production"
+  }
 }
 
 resource "aws_secretsmanager_secret_version" "rds_secret_version" {
@@ -70,6 +75,7 @@ resource "aws_secretsmanager_secret_version" "rds_secret_version" {
 resource "aws_db_instance" "rds" {
   identifier             = var.db_instance_identifier
   allocated_storage      = 20
+  storage_type           = "gp3"
   engine                 = var.db_engine
   engine_version         = var.db_engine_version
   instance_class         = var.db_instance_class
