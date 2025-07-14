@@ -1,35 +1,50 @@
 variable "region" {
-  default = "ap-south-1"
+  type        = string
+  description = "AWS region to deploy resources"
 }
 
 variable "vpc_cidr" {
-  default = "10.0.0.0/16"
+  type        = string
+  description = "CIDR block for the VPC"
 }
 
 variable "subnet_cidrs" {
-  type = list(string)
-  default = ["10.0.1.0/24", "10.0.2.0/24"]
+  type        = list(string)
+  description = "List of subnet CIDRs for RDS"
 }
 
-variable "db_username" {}
-variable "db_password" {}
+variable "db_username" {
+  type        = string
+  description = "RDS admin username"
+}
+
+variable "db_password" {
+  type        = string
+  sensitive   = true
+  description = "RDS admin password"
+}
 
 variable "db_instance_identifier" {
-  default = "my-custom-db"
+  type        = string
+  description = "Unique identifier for the RDS instance"
 }
 
 variable "db_engine" {
-  default = "mysql"
+  type        = string
+  description = "Database engine (e.g., mysql)"
 }
 
 variable "db_engine_version" {
-  default = "8.0"
+  type        = string
+  description = "Version of the database engine"
 }
 
 variable "db_instance_class" {
-  default = "db.t3.micro"
+  type        = string
+  description = "RDS instance class"
 }
 
 variable "db_name" {
-  default = "mydatabase"
+  type        = string
+  description = "Initial database name"
 }
