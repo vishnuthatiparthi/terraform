@@ -1,5 +1,5 @@
 module "ec2_instance" {
-  source         = "git::https://github.com/vishnuthatiparthi/ec2-module.git"
+  source         = "github.com/vishnuthatiparthi/ec2-module.git"
   
   name           = "vivaa"
   instance_type  = "t2.micro"
